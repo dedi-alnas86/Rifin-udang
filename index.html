@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Udang Galah Premium | Segar dari Peternakan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome untuk ikon (opsional) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
+      line-height: 1.7;
+    }
+
+    header {
+      background: linear-gradient(rgba(0, 0, 50, 0.68), rgba(0, 80, 120, 0.78)), 
+                  url('https://thumbs.dreamstime.com/b/fresh-raw-rosenbergii-shrimp-prawn-perfect-gourmet-dishes-seafood-lovers-seeking-premium-quality-black-background-top-view-434230485.jpg') center/cover no-repeat;
+      height: 90vh;
+      min-height: 680px;
+      max-height: 900px;
+      color: white;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0 5%;
+    }
+
+    .logo {
+      width: 140px;
+      height: auto;
+      margin-bottom: 30px;
+      filter: drop-shadow(0 6px 12px rgba(0,0,0,0.5));
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.6);
+    }
+
+    .tagline {
+      font-size: clamp(1.3rem, 3vw, 1.8rem);
+      font-weight: 300;
+      max-width: 820px;
+      margin-bottom: 50px;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: #00c853;
+      color: white;
+      padding: 18px 48px;
+      font-size: 1.35rem;
+      font-weight: 600;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 24px rgba(0,200,83,0.4);
+    }
+
+    .btn:hover {
+      background-color: #00b140;
+      transform: translateY(-6px);
+      box-shadow: 0 16px 36px rgba(0,200,83,0.5);
+    }
+
+    section {
+      padding: 100px 5%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      margin-bottom: 60px;
+      color: #00695c;
+    }
+
+    .produk-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 50px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.1);
+      transition: all 0.35s ease;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-16px);
+      box-shadow: 0 24px 48px rgba(0,0,0,0.15);
+    }
+
+    .card img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 32px;
+      text-align: center;
+    }
+
+    .price {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #d81b60;
+      margin: 16px 0;
+    }
+
+    .stiker {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      width: 130px;
+      opacity: 0.92;
+      transform: rotate(12deg);
+      pointer-events: none;
+    }
+
+    .kontak {
+      background: #00695c;
+      color: white;
+      text-align: center;
+      padding: 100px 5% 120px;
+    }
+
+    .kontak a {
+      color: #ffe082;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .wa-link {
+      font-size: 1.6rem;
+      margin: 30px 0 40px;
+    }
+
+    .maps-wrapper {
+      margin: 50px auto 0;
+      max-width: 900px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .maps-wrapper iframe {
+      width: 100%;
+      height: 450px;
+      border: 0;
+    }
+
+    footer {
+      background: #003d33;
+      color: #ddd;
+      text-align: center;
+      padding: 60px 20px 40px;
+      font-size: 1.1rem;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .maps-wrapper iframe { height: 400px; }
+    }
+
+    @media (max-width: 768px) {
+      header { height: 85vh; min-height: 560px; padding: 0 6%; }
+      h1 { font-size: 2.8rem; }
+      .tagline { font-size: 1.35rem; max-width: 90%; }
+      .btn { padding: 14px 36px; font-size: 1.15rem; }
+      .produk-grid { grid-template-columns: 1fr; gap: 50px; }
+      .card img { height: 280px; }
+      .stiker { width: 100px; top: 16px; right: 16px; }
+      section { padding: 60px 5%; }
+      h2 { font-size: 2.4rem; }
+      .maps-wrapper iframe { height: 350px; }
+    }
+
+    @media (max-width: 480px) {
+      .maps-wrapper iframe { height: 300px; }
+      .btn { width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="https://thumbs.dreamstime.com/b/one-line-drawing-shrimp-hand-drawn-prawn-seafood-logo-identity-restaurant-icon-print-minimal-design-vector-one-line-drawing-223499954.jpg" alt="Logo Udang Galah Premium" class="logo">
+    
+    <h1>Udang Galah Premium</h1>
+    <p class="tagline">Rasa manis alami • Daging tebal & kenyal • Langsung dari peternakan terbaik Palembang</p>
+    
+    <a href="https://wa.me/6282175176816?text=Saya%20mau%20pesan%20Udang%20Galah" class="btn">Pesan Sekarang via WA</a>
+  </header>
+
+  <section>
+    <h2>Kenapa Memilih Udang Galah Kami?</h2>
+    <div class="produk-grid">
+      <div class="card">
+        <img src="https://thumbs.dreamstime.com/b/closeup-raw-giant-freshwater-prawn-macrobrachium-rosenbergii-photo-raw-giant-freshwater-prawn-macrobrachium-rosenbergii-157959263.jpg" alt="Udang Galah Segar">
+        <img src="https://i.etsystatic.com/23307767/r/il/05a025/6152544758/il_fullxfull.6152544758_kv4h.jpg" alt="Sticker" class="stiker">
+        <div class="card-content">
+          <h3>Ukuran Jumbo</h3>
+          <p>80–120 gr/ekor • Cocok BBQ, bakar madu, sop, arang</p>
+          <div class="price">Rp 185.000 / kg</div>
+          <a href="https://wa.me/6282175176816" class="btn">Pesan</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://thumbs.dreamstime.com/b/extra-large-size-giant-malaysian-prawn-macrobrachium-rosenbergii-also-known-as-river-freshwater-97540136.jpg" alt="Udang Galah Besar">
+        <div class="card-content">
+          <h3>Super Fresh</h3>
+          <p>Ditangkap & packing hari yang sama • Ice gel pack aman</p>
+          <div class="price">Rp 195.000 / kg</div>
+          <a href="https://wa.me/6282175176816" class="btn">Pesan</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://thumbs.dreamstime.com/b/fresh-raw-rosenbergii-shrimp-prawn-perfect-gourmet-dishes-seafood-lovers-seeking-premium-quality-black-background-top-view-434230485.jpg" alt="Udang Galah Premium">
+        <div class="card-content">
+          <h3>Grade A Export</h3>
+          <p>Bebas antibiotik • Warna cerah • Daging padat manis</p>
+          <div class="price">Rp 220.000 / kg</div>
+          <a href="https://wa.me/6282175176816" class="btn">Pesan</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="kontak">
+    <h2>Hubungi Kami</h2>
+    <p class="wa-link">
+      📞 WA / Telepon: <a href="https://wa.me/6282175176816">0821-7517-6816</a>
+    </p>
+
+    <p style="font-size:1.3rem; margin: 20px 0 40px;">Lokasi peternakan kami di Palembang. Lihat peta di bawah:</p>
+
+    <!-- Embed Maps Rifin Udang di sini -->
+    <div class="maps-wrapper">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d939.1563395213401!2d104.78731276217285!3d-2.984582065951734!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e3b7731d58ba89d%3A0xeeeabddcbadcccdc!2sRifin%20Udang!5e0!3m2!1sid!2sid!4v1770888326552!5m2!1sid!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    <p style="font-size:1.3rem; margin-top: 50px;">Pengiriman seluruh Indonesia • Minimal order 1 kg</p>
+  </section>
+
+  <footer>
+    <p>© 2026 Udang Galah Premium • Palembang, Sumatera Selatan • Seafood berkualitas untuk keluarga</p>
+    <p style="margin-top: 20px; font-size: 1rem;">Peternakan: Rifin Udang, Palembang</p>
+  </footer>
+
+</body>
+</html>
