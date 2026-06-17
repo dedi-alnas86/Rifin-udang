@@ -2,469 +2,794 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"/>
   <title>Rifin Udang Galah Premium | Segar dari Peternakan</title>
   
   <!-- ===== FAVICON UDANG ===== -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦐</text></svg>">
   <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f990.png">
   <link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f990.png">
-  <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f990.png">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
   <style>
+    /* ===== RESET & BASE ===== */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+    
+    html {
+      scroll-behavior: smooth;
+      -webkit-tap-highlight-color: transparent;
+    }
+    
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #f8f9fa;
-      color: #333;
+      background: #f0f4f8;
+      color: #1a2a3a;
       line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* ===== HEADER ===== */
-    header {
-      background: linear-gradient(rgba(0, 0, 50, 0.68), rgba(0, 80, 120, 0.78)), 
-                  url('https://thumbs.dreamstime.com/b/fresh-raw-rosenbergii-shrimp-prawn-perfect-gourmet-dishes-seafood-lovers-seeking-premium-quality-black-background-top-view-434230485.jpg') center/cover no-repeat;
-      height: 90vh;
-      min-height: 680px;
-      max-height: 900px;
-      color: white;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+    /* ===== ANIMASI ===== */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    @keyframes shimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    
+    .fade-in {
+      opacity: 0;
+      animation: fadeInUp 0.7s ease forwards;
+    }
+    
+    .fade-in:nth-child(1) { animation-delay: 0.1s; }
+    .fade-in:nth-child(2) { animation-delay: 0.25s; }
+    .fade-in:nth-child(3) { animation-delay: 0.4s; }
+
+    /* ===== BUTTON ===== */
+    .btn-primary {
+      display: inline-flex;
       align-items: center;
-      padding: 0 5%;
-      position: relative;
+      justify-content: center;
+      gap: 12px;
+      background: linear-gradient(135deg, #00c853, #00a844);
+      color: white;
+      padding: 16px 32px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 60px;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 0 6px 24px rgba(0, 200, 83, 0.3);
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      max-width: 320px;
+      min-height: 56px;
+    }
+    
+    .btn-primary:active {
+      transform: scale(0.96);
+    }
+    
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #00695c, #004d40);
+      color: white;
+      padding: 14px 28px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 60px;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 0 4px 16px rgba(0, 105, 92, 0.25);
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      min-height: 50px;
+    }
+    
+    .btn-secondary:active {
+      transform: scale(0.96);
     }
 
-    header::after {
+    /* ===== HEADER / HERO - MOBILE FIRST ===== */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(160deg, rgba(0, 15, 30, 0.92), rgba(0, 50, 70, 0.85)), 
+                  url('https://thumbs.dreamstime.com/b/fresh-raw-rosenbergii-shrimp-prawn-perfect-gourmet-dishes-seafood-lovers-seeking-premium-quality-black-background-top-view-434230485.jpg') center/cover no-repeat;
+      background-attachment: scroll;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 5% 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.05);
+      top: -30%;
+      right: -40%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(0, 200, 83, 0.06), transparent 70%);
+      border-radius: 50%;
       pointer-events: none;
     }
-
-    .logo {
-      width: 140px;
-      height: auto;
-      margin-bottom: 30px;
-      filter: drop-shadow(0 6px 12px rgba(0,0,0,0.5));
-      transition: transform 0.3s ease;
-      z-index: 2;
-    }
-    .logo:hover {
-      transform: scale(1.05) rotate(-2deg);
-    }
-
-    h1 {
-      font-size: clamp(2.8rem, 6vw, 4.5rem);
-      font-weight: 700;
-      margin-bottom: 20px;
-      text-shadow: 0 4px 12px rgba(0,0,0,0.6);
-      z-index: 2;
-      letter-spacing: 2px;
-    }
-
-    .tagline {
-      font-size: clamp(1.3rem, 3vw, 1.8rem);
-      font-weight: 300;
-      max-width: 820px;
-      margin-bottom: 50px;
-      z-index: 2;
-      background: rgba(0,0,0,0.2);
-      padding: 14px 32px;
-      border-radius: 50px;
-      backdrop-filter: blur(4px);
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .btn {
-      display: inline-block;
-      background-color: #00c853;
-      color: white;
-      padding: 18px 48px;
-      font-size: 1.35rem;
-      font-weight: 600;
-      border-radius: 50px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      box-shadow: 0 8px 24px rgba(0,200,83,0.4);
-      z-index: 2;
-      border: 2px solid rgba(255,255,255,0.15);
-    }
-
-    .btn:hover {
-      background-color: #00b140;
-      transform: translateY(-6px) scale(1.02);
-      box-shadow: 0 16px 40px rgba(0,200,83,0.5);
-      border-color: rgba(255,255,255,0.4);
-    }
-
-    /* ===== SECTION ===== */
-    section {
-      padding: 100px 5%;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    h2 {
-      text-align: center;
-      font-size: clamp(2.2rem, 5vw, 3.2rem);
-      margin-bottom: 60px;
-      color: #00695c;
-      position: relative;
-    }
-    h2::after {
-      content: '';
-      display: block;
-      width: 80px;
-      height: 4px;
-      background: linear-gradient(90deg, #00c853, #00695c);
-      margin: 16px auto 0;
-      border-radius: 4px;
-    }
-
-    /* ===== PRODUK GRID ===== */
-    .produk-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 50px;
-    }
-
-    .card {
-      background: white;
-      border-radius: 24px;
-      overflow: hidden;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      position: relative;
-      border: 1px solid rgba(0,0,0,0.04);
-    }
-
-    .card:hover {
-      transform: translateY(-18px);
-      box-shadow: 0 28px 64px rgba(0,0,0,0.14);
-    }
-
-    .card img:first-of-type {
+    
+    .hero-content {
+      max-width: 1200px;
       width: 100%;
-      height: 320px;
-      object-fit: cover;
-      transition: transform 0.6s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      position: relative;
+      z-index: 2;
     }
-    .card:hover img:first-of-type {
-      transform: scale(1.04);
-    }
-
-    .card-content {
-      padding: 32px 28px 36px;
+    
+    .hero-text {
+      color: white;
       text-align: center;
+      width: 100%;
     }
-    .card-content h3 {
-      font-size: 1.6rem;
-      color: #00695c;
-      margin-bottom: 10px;
+    
+    .hero-text .badge {
+      display: inline-block;
+      background: rgba(0, 200, 83, 0.2);
+      backdrop-filter: blur(10px);
+      padding: 6px 18px;
+      border-radius: 60px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #69f0ae;
+      border: 1px solid rgba(0, 200, 83, 0.15);
+      margin-bottom: 16px;
     }
-    .card-content p {
-      color: #666;
-      font-size: 1rem;
-      margin-bottom: 12px;
-    }
-
-    .price {
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: #d81b60;
-      margin: 16px 0 20px;
-      background: linear-gradient(145deg, #d81b60, #ad1457);
+    
+    .hero-text h1 {
+      font-size: clamp(2.2rem, 8vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 14px;
+      background: linear-gradient(135deg, #ffffff, #69f0ae);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-
-    .stiker {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      width: 120px;
-      opacity: 0.92;
-      transform: rotate(12deg);
-      pointer-events: none;
-      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
-      z-index: 3;
+    
+    .hero-text p {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      font-weight: 300;
+      opacity: 0.9;
+      max-width: 500px;
+      margin: 0 auto 24px;
+      line-height: 1.8;
+    }
+    
+    .hero-text .features {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+      align-items: center;
+    }
+    
+    .hero-text .features span {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: #b2dfdb;
+    }
+    
+    .hero-text .features i {
+      color: #69f0ae;
+      font-size: 1rem;
+      width: 20px;
+    }
+    
+    .hero-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+    
+    .hero-image .logo-wrapper {
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(20px);
+      border-radius: 50%;
+      padding: 24px;
+      border: 2px solid rgba(255, 255, 255, 0.06);
+      animation: float 4s ease-in-out infinite;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    }
+    
+    .hero-image .logo-wrapper img {
+      width: 140px;
+      height: auto;
+      filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.3));
     }
 
-    .card .btn {
-      padding: 12px 36px;
-      font-size: 1.05rem;
-      background: #00695c;
-      box-shadow: 0 6px 20px rgba(0,105,92,0.3);
-      border: none;
+    /* ===== SECTION - MOBILE FIRST ===== */
+    .section {
+      padding: 60px 5%;
+      max-width: 1400px;
+      margin: 0 auto;
     }
-    .card .btn:hover {
-      background: #004d40;
-      transform: translateY(-4px) scale(1.02);
-      box-shadow: 0 12px 32px rgba(0,105,92,0.45);
-    }
-
-    /* ===== KONTAK ===== */
-    .kontak {
-      background: linear-gradient(160deg, rgba(0, 60, 50, 0.92), rgba(0, 30, 25, 0.95)), 
-                  url('https://thumbs.dreamstime.com/b/fresh-raw-rosenbergii-shrimp-prawn-perfect-gourmet-dishes-seafood-lovers-seeking-premium-quality-black-background-top-view-434230485.jpg') center/cover no-repeat;
-      background-attachment: fixed;
-      background-blend-mode: overlay;
-      color: white;
+    
+    .section-header {
       text-align: center;
-      padding: 100px 5% 120px;
-      border-radius: 60px 60px 0 0;
-      margin-top: 60px;
+      margin-bottom: 40px;
+    }
+    
+    .section-header .subtitle {
+      display: inline-block;
+      background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+      padding: 4px 18px;
+      border-radius: 60px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #00695c;
+      margin-bottom: 12px;
+    }
+    
+    .section-header h2 {
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 700;
+      color: #003d33;
+      position: relative;
+    }
+    
+    .section-header h2::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 3px;
+      background: linear-gradient(90deg, #00c853, #00695c);
+      margin: 12px auto 0;
+      border-radius: 4px;
+    }
+    
+    .section-header p {
+      max-width: 500px;
+      margin: 12px auto 0;
+      color: #546e7a;
+      font-size: 0.95rem;
+    }
+
+    /* ===== PRODUK GRID - MOBILE FIRST ===== */
+    .produk-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    
+    .card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
+      border: 1px solid rgba(0, 0, 0, 0.03);
+    }
+    
+    .card:active {
+      transform: scale(0.98);
+    }
+    
+    .card-image {
       position: relative;
       overflow: hidden;
+      height: 220px;
     }
-
-    /* Efek overlay gelap dengan pola */
-    .kontak::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
+    
+    .card-image img {
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle at 20% 50%, rgba(0,200,83,0.08), transparent 70%),
-                  radial-gradient(circle at 80% 50%, rgba(0,200,83,0.05), transparent 70%);
-      pointer-events: none;
+      object-fit: cover;
     }
-
-    /* Efek dekoratif gelombang di bagian atas */
-    .kontak::after {
-      content: '';
+    
+    .card-image .stiker {
       position: absolute;
-      top: -2px;
-      left: 0;
-      width: 100%;
-      height: 60px;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.32C59.82,91.74,112.7,90.06,162,81.21,218.17,70.88,267.06,67.23,321.39,56.44Z' fill='%23f8f9fa' opacity='0.15'/%3E%3C/svg%3E") no-repeat;
-      background-size: 100% 100%;
-      pointer-events: none;
+      top: 12px;
+      right: 12px;
+      width: 80px;
+      opacity: 0.92;
+      transform: rotate(12deg);
+      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.15));
+      z-index: 3;
+    }
+    
+    .card-body {
+      padding: 20px 20px 24px;
+      text-align: center;
+    }
+    
+    .card-body h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #003d33;
+      margin-bottom: 6px;
+    }
+    
+    .card-body p {
+      color: #546e7a;
+      font-size: 0.9rem;
+      margin-bottom: 14px;
+    }
+    
+    .card-body .price {
+      font-size: 1.7rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #d81b60, #ad1457);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
     }
 
-    .kontak h2 {
-      color: white;
+    /* ===== KONTAK - MOBILE FIRST ===== */
+    .kontak-section {
+      background: linear-gradient(160deg, rgba(0, 50, 40, 0.95), rgba(0, 25, 20, 0.98)), 
+                  url('https://thumbs.dreamstime.com/b/fresh-raw-rosenbergii-shrimp-prawn-perfect-gourmet-dishes-seafood-lovers-seeking-premium-quality-black-background-top-view-434230485.jpg') center/cover no-repeat;
+      background-attachment: scroll;
+      background-blend-mode: overlay;
+      padding: 60px 5% 80px;
+      margin-top: 40px;
       position: relative;
-      z-index: 2;
+      border-radius: 30px 30px 0 0;
     }
-    .kontak h2::after {
+    
+    .kontak-section .section-header h2 {
+      color: white;
+    }
+    
+    .kontak-section .section-header h2::after {
       background: linear-gradient(90deg, #ffe082, #ffb300);
     }
-
-    .kontak a {
+    
+    .kontak-section .section-header .subtitle {
+      background: rgba(255, 224, 130, 0.15);
+      color: #ffe082;
+    }
+    
+    .kontak-section .section-header p {
+      color: #b2dfdb;
+    }
+    
+    .kontak-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .kontak-info {
+      color: white;
+      text-align: center;
+    }
+    
+    .kontak-info .wa-link {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 16px 0 20px;
+      word-break: break-word;
+    }
+    
+    .kontak-info .wa-link a {
       color: #ffe082;
       text-decoration: none;
-      font-weight: 600;
       border-bottom: 2px solid transparent;
-      transition: all 0.3s ease;
+      transition: border 0.3s;
+      display: inline-block;
     }
-    .kontak a:hover {
+    
+    .kontak-info .wa-link a:active {
       border-bottom-color: #ffe082;
-      text-shadow: 0 0 20px rgba(255,224,130,0.3);
     }
-
-    .wa-link {
-      font-size: 1.7rem;
-      margin: 30px 0 40px;
-      font-weight: 400;
-      position: relative;
-      z-index: 2;
-    }
-    .wa-link i {
+    
+    .kontak-info .wa-link i {
       color: #25D366;
-      margin-right: 12px;
+      margin-right: 10px;
+      font-size: 1.6rem;
     }
-
-    .kontak .sub-text {
-      font-size: 1.2rem;
-      margin: 20px 0 40px;
+    
+    .kontak-info .detail-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 12px 0;
+      font-size: 0.95rem;
       opacity: 0.9;
-      position: relative;
-      z-index: 2;
+      flex-wrap: wrap;
     }
-
+    
+    .kontak-info .detail-item i {
+      width: 36px;
+      height: 36px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffe082;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+    }
+    
+    .kontak-info .info-shipping {
+      margin-top: 24px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 14px 20px;
+      border-radius: 60px;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 0.9rem;
+      display: inline-block;
+    }
+    
     .maps-wrapper {
-      margin: 50px auto 0;
-      max-width: 900px;
-      border-radius: 24px;
+      border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 16px 48px rgba(0,0,0,0.45);
-      border: 4px solid rgba(255,255,255,0.15);
-      position: relative;
-      z-index: 2;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3);
+      border: 2px solid rgba(255, 255, 255, 0.06);
     }
-    .maps-wrapper:hover {
-      transform: scale(1.01);
-      box-shadow: 0 24px 64px rgba(0,0,0,0.55);
-    }
-
+    
     .maps-wrapper iframe {
       width: 100%;
-      height: 450px;
+      height: 280px;
       border: 0;
       display: block;
     }
 
-    .info-shipping {
-      font-size: 1.2rem;
-      margin-top: 50px;
-      background: rgba(255,255,255,0.1);
-      padding: 16px 36px;
-      border-radius: 60px;
-      display: inline-block;
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,0.12);
-      position: relative;
-      z-index: 2;
-      transition: all 0.3s ease;
-    }
-    .info-shipping:hover {
-      background: rgba(255,255,255,0.18);
-      transform: translateY(-3px);
-    }
-
-    /* ===== FOOTER ===== */
+    /* ===== FOOTER - MOBILE FIRST ===== */
     footer {
       background: #003d33;
-      color: #ddd;
+      color: #b2dfdb;
       text-align: center;
-      padding: 60px 20px 40px;
-      font-size: 1.05rem;
-      border-top: 1px solid rgba(255,255,255,0.04);
+      padding: 40px 5% 30px;
+      font-size: 0.85rem;
     }
-    footer p:first-of-type {
+    
+    footer .footer-brand {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 10px;
+    }
+    
+    footer .footer-brand span {
+      color: #69f0ae;
+    }
+    
+    footer .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin: 16px 0 24px;
+    }
+    
+    footer .social-links a {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #b2dfdb;
+      transition: all 0.3s;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    
+    footer .social-links a:active {
+      background: rgba(0, 200, 83, 0.2);
+      color: #69f0ae;
+    }
+    
+    footer .footer-divider {
+      width: 40px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.05);
+      margin: 16px auto;
+    }
+    
+    footer p {
+      opacity: 0.6;
       font-weight: 300;
-      letter-spacing: 0.5px;
-    }
-    footer p:last-of-type {
-      margin-top: 20px;
-      font-size: 0.95rem;
-      color: #99b3b0;
-    }
-    footer i {
-      margin: 0 8px;
+      font-size: 0.8rem;
     }
 
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 1024px) {
-      .maps-wrapper iframe { height: 400px; }
-    }
-
-    @media (max-width: 768px) {
-      header { height: 85vh; min-height: 560px; padding: 0 6%; }
-      h1 { font-size: 2.6rem; }
-      .tagline { font-size: 1.15rem; max-width: 95%; padding: 12px 20px; }
-      .btn { padding: 14px 32px; font-size: 1.1rem; }
-      .produk-grid { grid-template-columns: 1fr; gap: 40px; }
-      .card img:first-of-type { height: 260px; }
-      .stiker { width: 100px; top: 14px; right: 14px; }
-      section { padding: 60px 5%; }
-      h2 { font-size: 2rem; }
-      .maps-wrapper iframe { height: 320px; }
-      .kontak { 
-        padding: 70px 5% 80px; 
-        border-radius: 40px 40px 0 0;
-        background-attachment: scroll;
+    /* ===== TABLET & DESKTOP ===== */
+    @media (min-width: 600px) {
+      .hero {
+        padding: 60px 5% 80px;
       }
-      .wa-link { font-size: 1.4rem; }
-      .info-shipping { font-size: 1rem; padding: 14px 24px; }
+      
+      .hero-text .features {
+        flex-direction: row;
+        justify-content: center;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+      
+      .hero-image .logo-wrapper img {
+        width: 180px;
+      }
+      
+      .produk-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+      }
+      
+      .card-image {
+        height: 260px;
+      }
+      
+      .kontak-wrapper {
+        flex-direction: row;
+        align-items: stretch;
+        gap: 40px;
+      }
+      
+      .kontak-info {
+        text-align: left;
+        flex: 1;
+      }
+      
+      .kontak-info .detail-item {
+        justify-content: flex-start;
+      }
+      
+      .maps-wrapper {
+        flex: 1;
+      }
+      
+      .maps-wrapper iframe {
+        height: 350px;
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .hero {
+        padding: 80px 5% 100px;
+        background-attachment: fixed;
+      }
+      
+      .hero-content {
+        flex-direction: row;
+        gap: 60px;
+      }
+      
+      .hero-text {
+        text-align: left;
+        flex: 1;
+      }
+      
+      .hero-text p {
+        margin: 0 0 24px 0;
+      }
+      
+      .hero-text .features {
+        justify-content: flex-start;
+      }
+      
+      .hero-image {
+        flex: 1;
+      }
+      
+      .hero-image .logo-wrapper img {
+        width: 280px;
+      }
+      
+      .btn-primary {
+        width: auto;
+      }
+      
+      .btn-secondary {
+        width: auto;
+      }
+      
+      .produk-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+      }
+      
+      .card-image {
+        height: 320px;
+      }
+      
+      .kontak-section {
+        padding: 100px 5% 120px;
+        border-radius: 60px 60px 0 0;
+        background-attachment: fixed;
+      }
+      
+      .maps-wrapper iframe {
+        height: 400px;
+      }
     }
 
-    @media (max-width: 480px) {
-      .maps-wrapper iframe { height: 280px; }
-      .btn { width: 100%; text-align: center; }
-      .card .btn { width: 100%; }
-      .logo { width: 110px; }
-      .kontak::after { height: 40px; }
+    /* ===== TOUCH OPTIMIZATION ===== */
+    @media (hover: none) {
+      .btn-primary:hover, .btn-secondary:hover {
+        transform: none;
+      }
+      
+      .card:hover {
+        transform: none;
+      }
+      
+      .maps-wrapper:hover {
+        transform: none;
+      }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <img src="https://thumbs.dreamstime.com/b/one-line-drawing-shrimp-hand-drawn-prawn-seafood-logo-identity-restaurant-icon-print-minimal-design-vector-one-line-drawing-223499954.jpg" alt="Logo Udang Galah Premium" class="logo">
-    
-    <h1>Rifin Udang Premium</h1>
-    <p class="tagline"><i class="fas fa-star" style="color: #ffd54f; margin-right: 10px;"></i> Rasa manis alami • Daging tebal & kenyal • Langsung dari peternakan terbaik premium <i class="fas fa-star" style="color: #ffd54f; margin-left: 10px;"></i></p>
-    
-    <a href="https://wa.me/6282175176816?text=Saya%20mau%20pesan%20Udang%20Galah" class="btn"><i class="fab fa-whatsapp" style="margin-right: 12px;"></i> Pesan Sekarang via WA</a>
-  </header>
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-text fade-in">
+        <div class="badge">🦐 Premium Quality</div>
+        <h1>Rifin Udang Galah</h1>
+        <p>Rasa manis alami, daging tebal & kenyal. Langsung dari peternakan terbaik premium untuk keluarga Anda.</p>
+        <a href="https://wa.me/6282175176816?text=Saya%20mau%20pesan%20Udang%20Galah" class="btn-primary">
+          <i class="fab fa-whatsapp"></i> Pesan Sekarang
+        </a>
+        <div class="features">
+          <span><i class="fas fa-check-circle"></i> Segar dari Peternakan</span>
+          <span><i class="fas fa-check-circle"></i> Grade A Export</span>
+          <span><i class="fas fa-check-circle"></i> Bebas Antibiotik</span>
+        </div>
+      </div>
+      <div class="hero-image fade-in">
+        <div class="logo-wrapper">
+          <img src="https://thumbs.dreamstime.com/b/one-line-drawing-shrimp-hand-drawn-prawn-seafood-logo-identity-restaurant-icon-print-minimal-design-vector-one-line-drawing-223499954.jpg" alt="Logo Udang Galah Premium">
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <section>
-    <h2>Kenapa Memilih Udang Galah Kami?</h2>
+  <!-- ===== PRODUK ===== -->
+  <section class="section" id="produk">
+    <div class="section-header fade-in">
+      <div class="subtitle">Koleksi Kami</div>
+      <h2>Kenapa Memilih Udang Galah Kami?</h2>
+      <p>Kualitas terbaik dengan harga bersaing, siap kirim ke seluruh Indonesia</p>
+    </div>
+    
     <div class="produk-grid">
-      <div class="card">
-        <img src="https://thumbs.dreamstime.com/b/closeup-raw-giant-freshwater-prawn-macrobrachium-rosenbergii-photo-raw-giant-freshwater-prawn-macrobrachium-rosenbergii-157959263.jpg" alt="Udang Galah Segar">
-        <img src="https://i.etsystatic.com/23307767/r/il/05a025/6152544758/il_fullxfull.6152544758_kv4h.jpg" alt="Sticker Premium" class="stiker">
-        <div class="card-content">
+      <div class="card fade-in">
+        <div class="card-image">
+          <img src="https://thumbs.dreamstime.com/b/closeup-raw-giant-freshwater-prawn-macrobrachium-rosenbergii-photo-raw-giant-freshwater-prawn-macrobrachium-rosenbergii-157959263.jpg" alt="Udang Galah Segar" loading="lazy">
+          </div>
+        <div class="card-body">
           <h3>Ukuran Jumbo</h3>
           <p>80–120 gr/ekor • Cocok BBQ, bakar madu, sop, arang</p>
           <div class="price">Rp 185.000 / kg</div>
-          <a href="https://wa.me/6282175176816" class="btn"><i class="fab fa-whatsapp" style="margin-right: 8px;"></i> Pesan</a>
+          <a href="https://wa.me/6282175176816" class="btn-secondary"><i class="fab fa-whatsapp"></i> Pesan</a>
         </div>
       </div>
 
-      <div class="card">
-        <img src="https://thumbs.dreamstime.com/b/extra-large-size-giant-malaysian-prawn-macrobrachium-rosenbergii-also-known-as-river-freshwater-97540136.jpg" alt="Udang Galah Besar">
-        <div class="card-content">
+      <div class="card fade-in">
+        <div class="card-image">
+          <img src="https://thumbs.dreamstime.com/b/extra-large-size-giant-malaysian-prawn-macrobrachium-rosenbergii-also-known-as-river-freshwater-97540136.jpg" alt="Udang Galah Besar" loading="lazy">
+        </div>
+        <div class="card-body">
           <h3>Super Fresh</h3>
           <p>Ditangkap & packing hari yang sama • Ice gel pack aman</p>
           <div class="price">Rp 195.000 / kg</div>
-          <a href="https://wa.me/6282175176816" class="btn"><i class="fab fa-whatsapp" style="margin-right: 8px;"></i> Pesan</a>
+          <a href="https://wa.me/6282175176816" class="btn-secondary"><i class="fab fa-whatsapp"></i> Pesan</a>
         </div>
       </div>
 
-      <div class="card">
-        <img src="https://thumbs.dreamstime.com/b/fresh-raw-rosenbergii-shrimp-prawn-perfect-gourmet-dishes-seafood-lovers-seeking-premium-quality-black-background-top-view-434230485.jpg" alt="Udang Galah Premium">
-        <div class="card-content">
+      <div class="card fade-in">
+        <div class="card-image">
+          <img src="https://thumbs.dreamstime.com/b/fresh-raw-rosenbergii-shrimp-prawn-perfect-gourmet-dishes-seafood-lovers-seeking-premium-quality-black-background-top-view-434230485.jpg" alt="Udang Galah Premium" loading="lazy">
+        </div>
+        <div class="card-body">
           <h3>Grade A Export</h3>
           <p>Bebas antibiotik • Warna cerah • Daging padat manis</p>
           <div class="price">Rp 250.000 / kg</div>
-          <a href="https://wa.me/6282175176816" class="btn"><i class="fab fa-whatsapp" style="margin-right: 8px;"></i> Pesan</a>
+          <a href="https://wa.me/6282175176816" class="btn-secondary"><i class="fab fa-whatsapp"></i> Pesan</a>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="kontak">
-    <h2>Hubungi Kami</h2>
-    <p class="wa-link">
-      <i class="fab fa-whatsapp"></i> WA / Telepon: <a href="https://wa.me/6282175176816">0821-7517-6816</a>
-    </p>
-
-    <p class="sub-text"><i class="fas fa-map-pin" style="margin-right: 10px; color: #ffe082;"></i> Lokasi penjualan kami di Palembang. Lihat peta di bawah:</p>
-
-    <div class="maps-wrapper">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d939.1563395213401!2d104.78731276217285!3d-2.984582065951734!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e3b7731d58ba89d%3A0xeeeabddcbadcccdc!2sRifin%20Udang!5e0!3m2!1sid!2sid!4v1770888326552!5m2!1sid!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  <!-- ===== KONTAK ===== -->
+  <section class="kontak-section" id="kontak">
+    <div class="section-header fade-in">
+      <div class="subtitle">Hubungi Kami</div>
+      <h2>Pesan Sekarang</h2>
+      <p>Segera dapatkan udang galah premium berkualitas untuk keluarga Anda</p>
     </div>
-
-    <div class="info-shipping">
-      <i class="fas fa-truck" style="margin-right: 12px;"></i> Pengiriman seluruh Indonesia • Minimal order 1 kg
+    
+    <div class="kontak-wrapper">
+      <div class="kontak-info fade-in">
+        <div class="wa-link">
+          <i class="fab fa-whatsapp"></i>
+          <a href="https://wa.me/6282175176816">0821-7517-6816</a>
+        </div>
+        
+        <div class="detail-item">
+          <i class="fas fa-map-pin"></i>
+          <span>Palembang, Sumatera Selatan</span>
+        </div>
+        <div class="detail-item">
+          <i class="fas fa-clock"></i>
+          <span>Buka Setiap Hari • 08:00 - 20:00</span>
+        </div>
+        <div class="detail-item">
+          <i class="fas fa-truck"></i>
+          <span>Pengiriman Seluruh Indonesia</span>
+        </div>
+        
+        <div class="info-shipping">
+          <i class="fas fa-box" style="margin-right: 8px;"></i> Minimal order 1 kg • Packing aman dengan ice gel
+        </div>
+      </div>
+      
+      <div class="maps-wrapper fade-in">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d939.1563395213401!2d104.78731276217285!3d-2.984582065951734!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e3b7731d58ba89d%3A0xeeeabddcbadcccdc!2sRifin%20Udang!5e0!3m2!1sid!2sid!4v1770888326552!5m2!1sid!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
     </div>
   </section>
 
+  <!-- ===== FOOTER ===== -->
   <footer>
-    <p><i class="fas fa-shrimp"></i> © 2026 Rifin Udang Galah Premium • Palembang, Sumatera Selatan • Seafood berkualitas untuk keluarga</p>
-    <p>Penjualan: Rifin Udang, Palembang <i class="fas fa-fish"></i></p>
+    <div class="footer-brand">Rifin <span>Udang</span> Premium</div>
+    <div class="social-links">
+      <a href="https://wa.me/6282175176816" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+    </div>
+    <div class="footer-divider"></div>
+    <p>© 2026 Rifin Udang Galah Premium • Palembang, Sumatera Selatan</p>
+    <p style="margin-top: 6px; font-size: 0.75rem;">Seafood berkualitas untuk keluarga Indonesia</p>
   </footer>
 
 </body>
