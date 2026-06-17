@@ -4,6 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Rifin Udang Galah Premium | Segar dari Peternakan</title>
+  
+  <!-- ===== FAVICON UDANG ===== -->
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3132/3132693.png">
+  <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3132/3132693.png">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -214,16 +219,49 @@
 
     /* ===== KONTAK ===== */
     .kontak {
-      background: linear-gradient(160deg, #00695c, #003d33);
+      background: linear-gradient(160deg, rgba(0, 60, 50, 0.92), rgba(0, 30, 25, 0.95)), 
+                  url('https://thumbs.dreamstime.com/b/fresh-raw-rosenbergii-shrimp-prawn-perfect-gourmet-dishes-seafood-lovers-seeking-premium-quality-black-background-top-view-434230485.jpg') center/cover no-repeat;
+      background-attachment: fixed;
+      background-blend-mode: overlay;
       color: white;
       text-align: center;
       padding: 100px 5% 120px;
       border-radius: 60px 60px 0 0;
       margin-top: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Efek overlay gelap dengan pola */
+    .kontak::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 50%, rgba(0,200,83,0.08), transparent 70%),
+                  radial-gradient(circle at 80% 50%, rgba(0,200,83,0.05), transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Efek dekoratif gelombang di bagian atas */
+    .kontak::after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.32C59.82,91.74,112.7,90.06,162,81.21,218.17,70.88,267.06,67.23,321.39,56.44Z' fill='%23f8f9fa' opacity='0.15'/%3E%3C/svg%3E") no-repeat;
+      background-size: 100% 100%;
+      pointer-events: none;
     }
 
     .kontak h2 {
       color: white;
+      position: relative;
+      z-index: 2;
     }
     .kontak h2::after {
       background: linear-gradient(90deg, #ffe082, #ffb300);
@@ -234,16 +272,19 @@
       text-decoration: none;
       font-weight: 600;
       border-bottom: 2px solid transparent;
-      transition: border 0.3s ease;
+      transition: all 0.3s ease;
     }
     .kontak a:hover {
       border-bottom-color: #ffe082;
+      text-shadow: 0 0 20px rgba(255,224,130,0.3);
     }
 
     .wa-link {
       font-size: 1.7rem;
       margin: 30px 0 40px;
       font-weight: 400;
+      position: relative;
+      z-index: 2;
     }
     .wa-link i {
       color: #25D366;
@@ -254,6 +295,8 @@
       font-size: 1.2rem;
       margin: 20px 0 40px;
       opacity: 0.9;
+      position: relative;
+      z-index: 2;
     }
 
     .maps-wrapper {
@@ -261,8 +304,15 @@
       max-width: 900px;
       border-radius: 24px;
       overflow: hidden;
-      box-shadow: 0 16px 48px rgba(0,0,0,0.35);
-      border: 4px solid rgba(255,255,255,0.12);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.45);
+      border: 4px solid rgba(255,255,255,0.15);
+      position: relative;
+      z-index: 2;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .maps-wrapper:hover {
+      transform: scale(1.01);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.55);
     }
 
     .maps-wrapper iframe {
@@ -275,12 +325,19 @@
     .info-shipping {
       font-size: 1.2rem;
       margin-top: 50px;
-      background: rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.1);
       padding: 16px 36px;
       border-radius: 60px;
       display: inline-block;
-      backdrop-filter: blur(4px);
-      border: 1px solid rgba(255,255,255,0.06);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.12);
+      position: relative;
+      z-index: 2;
+      transition: all 0.3s ease;
+    }
+    .info-shipping:hover {
+      background: rgba(255,255,255,0.18);
+      transform: translateY(-3px);
     }
 
     /* ===== FOOTER ===== */
@@ -321,7 +378,11 @@
       section { padding: 60px 5%; }
       h2 { font-size: 2rem; }
       .maps-wrapper iframe { height: 320px; }
-      .kontak { padding: 70px 5% 80px; border-radius: 40px 40px 0 0; }
+      .kontak { 
+        padding: 70px 5% 80px; 
+        border-radius: 40px 40px 0 0;
+        background-attachment: scroll;
+      }
       .wa-link { font-size: 1.4rem; }
       .info-shipping { font-size: 1rem; padding: 14px 24px; }
     }
@@ -331,6 +392,7 @@
       .btn { width: 100%; text-align: center; }
       .card .btn { width: 100%; }
       .logo { width: 110px; }
+      .kontak::after { height: 40px; }
     }
   </style>
 </head>
