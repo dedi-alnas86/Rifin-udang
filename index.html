@@ -54,11 +54,6 @@
       50% { transform: translateY(-10px); }
     }
     
-    @keyframes shimmer {
-      0% { background-position: -200% center; }
-      100% { background-position: 200% center; }
-    }
-    
     .fade-in {
       opacity: 0;
       animation: fadeInUp 0.7s ease forwards;
@@ -316,12 +311,35 @@
       position: relative;
       overflow: hidden;
       height: 220px;
+      background: #f8f9fa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     
     .card-image img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
+      padding: 10px;
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      transition: transform 0.5s ease;
+    }
+    
+    .card-image img:hover {
+      transform: scale(1.03);
+    }
+    
+    /* ===== ESTETIK BORDER & SHADOW PADA GAMBAR ===== */
+    .card-image::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40%;
+      background: linear-gradient(to top, rgba(0,0,0,0.03), transparent);
+      pointer-events: none;
     }
     
     .card-image .stiker {
@@ -566,6 +584,10 @@
         height: 260px;
       }
       
+      .card-image img {
+        padding: 15px;
+      }
+      
       .kontak-wrapper {
         flex-direction: row;
         align-items: stretch;
@@ -639,6 +661,10 @@
         height: 320px;
       }
       
+      .card-image img {
+        padding: 20px;
+      }
+      
       .kontak-section {
         padding: 100px 5% 120px;
         border-radius: 60px 60px 0 0;
@@ -663,6 +689,34 @@
       .maps-wrapper:hover {
         transform: none;
       }
+      
+      .card-image img:hover {
+        transform: none;
+      }
+    }
+
+    /* ===== ESTETIK TAMBAHAN UNTUK GAMBAR ===== */
+    .card-image {
+      position: relative;
+    }
+    
+    /* Efek glossy pada gambar */
+    .card-image::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.1), transparent 60%);
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    
+    .card:hover .card-image::before {
+      opacity: 1;
     }
   </style>
 </head>
@@ -703,8 +757,9 @@
     <div class="produk-grid">
       <div class="card fade-in">
         <div class="card-image">
-          <img src="https://ibb.co.com/bRGBQd76" alt="Udang Galah Segar" loading="lazy">
-          </div>
+          <img src="https://i.ibb.co.com/bRGBQd76/udang-jumbo.jpg" alt="Udang Galah Segar" loading="lazy">
+          <!-- Stiker bisa ditambahkan di sini jika diperlukan -->
+        </div>
         <div class="card-body">
           <h3>Ukuran Jumbo</h3>
           <p>6-8 Ekor/Kg • Cocok BBQ, bakar madu, sop, arang</p>
@@ -715,11 +770,11 @@
 
       <div class="card fade-in">
         <div class="card-image">
-          <img src="https://ibb.co.com/5W2BzLry" alt="Udang Galah Besar" loading="lazy">
+          <img src="https://i.ibb.co.com/5W2BzLry/udang-sedang.jpg" alt="Udang Galah Besar" loading="lazy">
         </div>
         <div class="card-body">
           <h3>Sedang Super Fresh</h3>
-          <p>10-15 Ekor/kg Ditangkap & packing hari yang sama • Ice  pack aman</p>
+          <p>10-15 Ekor/kg Ditangkap & packing hari yang sama • Ice pack aman</p>
           <div class="price">Rp 160.000 / kg</div>
           <a href="https://wa.me/6282175176816" class="btn-secondary"><i class="fab fa-whatsapp"></i> Pesan</a>
         </div>
@@ -727,11 +782,11 @@
 
       <div class="card fade-in">
         <div class="card-image">
-          <img src="https://ibb.co.com/j9TNBy4f" alt="Udang Galah Premium" loading="lazy">
+          <img src="https://i.ibb.co.com/j9TNBy4f/udang-kecil.jpg" alt="Udang Galah Premium" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Kecil </h3>
-          <p>25-30 Ekor / kg • Warna cerah • Daging padat manis</p>
+          <h3>Kecil</h3>
+          <p>25-30 Ekor/kg • Warna cerah • Daging padat manis</p>
           <div class="price">Rp 100.000 / kg</div>
           <a href="https://wa.me/6282175176816" class="btn-secondary"><i class="fab fa-whatsapp"></i> Pesan</a>
         </div>
